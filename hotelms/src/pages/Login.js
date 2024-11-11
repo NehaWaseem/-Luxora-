@@ -5,7 +5,7 @@ import React from 'react'
 {
 
     return(
-    <h1>Login page </h1>
+    <h1>Luxora - Login page </h1>
     )
 }
 export default Login;

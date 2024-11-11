@@ -5,7 +5,7 @@ function Signup()
 {
 
     return(
-    <h1>signup page </h1>
+    <h1>sLuxora - Signup page </h1>
     )
 }
 export default Signup;
