@@ -1,28 +1,35 @@
-// src/components/Navbar.js
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './Navbar.css';  
+import logoImage from './luxora.png'
 
 const Navbar = () => {
   return (
-    <nav>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/about">About</Link>
-        </li>
-        <li>
-          <Link to="/contact">Contact</Link>
-        </li>
-
-        <li>
-          <Link to="/login">Login</Link>
-        </li>
-        <li>
-          <Link to="/signup">Signup</Link>
-        </li>
-      </ul>
+    <nav className="main-navbar">
+      <div className="navbar-holder">
+      <div className="logo">
+          <Link to="/">
+            <img src={logoImage} alt="" className="logo-img" />
+          </Link>
+        </div>
+        <ul className="nav-links">
+          <li>
+            <Link to="/" className="nav-link">Home</Link>
+          </li>
+          <li>
+            <Link to="/about" className="nav-link">About</Link>
+          </li>
+          <li>
+            <Link to="/contact" className="nav-link">Contact</Link>
+          </li>
+          <li>
+            <Link to="/login" className="nav-link">Login</Link>
+          </li>
+          <li>
+            <Link to="/signup" className="nav-link">Signup</Link>
+          </li>
+        </ul>
+      </div>
     </nav>
   );
 };

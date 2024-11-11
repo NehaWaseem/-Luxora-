@@ -1,0 +1,53 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Navbar designing */
+
+  .logo a {
+    text-decoration: none;   /* Remove underline from link */
+  }
+  
+  .logo-img {
+    height: 65px;            /* Adjust the height of the logo image */
+    width: auto;             /* Maintain aspect ratio */
+  }
+  
+  
+  .nav-links {
+    list-style-type: none;   /* Remove list bullets */
+    display: flex;           /* Display links horizontally */
+    font-size: 17px;
+  }
+  
+  .nav-links li {
+    margin-left: 20px;       /* Space between links */
+  }
+  
+  .nav-link {
+    color: rgb(234, 201, 16);            /* Link text color */
+    text-decoration: none;   /* Remove underline from links */
+    padding: 8px 12px;       /* Add padding inside links */
+  }
+  
+  .nav-link:hover {
+    color:blue;
+    background-color: #efeccd; /* Change background color on hover */
+    border-radius: 4px;         /* Rounded corners on hover */
+  }
+  
+
+ .main-navbar{
+    background-color: #170957;
+    padding: 10px 20px;  /* Padding around the navbar */
+ }
+
+ .navbar-holder
+ {
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+ }
