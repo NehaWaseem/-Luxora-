@@ -1,5 +1,8 @@
 // src/pages/Home.js
 import React from 'react';
+const home = () => {
+  // State for feedback animation
+  const [feedbackIndex, setFeedbackIndex] = useState(0);
 
   const reviews = [
     '"Amazing experience! Highly recommend!" - Jane Doe',
