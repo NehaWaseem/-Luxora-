@@ -1,0 +1,27 @@
+.signup-page {
+    display: flex;
+    height: 100vh; /* Make sure it covers the full height of the viewport */
+    width: 100vw;  /* Full width of the viewport */
+    justify-content: center;
+    align-items: stretch;
+  }
+  
+  .side-image {
+    background: url('https://i.pinimg.com/736x/04/21/02/042102db26c89ef6ede2bf59c7d8202a.jpg') no-repeat center center;
+    background-size: cover;
+    flex: 1; /* Takes up half of the screen */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+  }
+  
+  .signup-form {
+    background-color: white;
+    flex: 1; /* Takes up half of the screen */
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
