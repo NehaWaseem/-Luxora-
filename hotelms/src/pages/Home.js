@@ -1,10 +1,12 @@
-// src/pages/Contact.js
 import React from 'react';
-import './Home.css'; // Import the CSS for styling
-import HeroSection from './HeroSection'; // Import HeroSection as a separate component
-import AboutSection from './AboutSection'; // Import AboutSection as a separate component
-import FeedbackSection from './FeedbackSection'; // Import FeedbackSection as a separate component
-import Footer from './Footer'; // Import Footer as a separate component
+import './home.css'; // Import the CSS for styling
+import HeroSection from './HeroSection';
+import AboutSection from './AboutSection';
+import RefreshmentsSection from './RefreshmentsSection';
+import SearchRoomsSection from './SearchRoomsSection';
+import FeaturedRoomsSection from './FeaturedRoomsSection';
+import FeedbackSection from './FeedbackSection';
+import Footer from './Footer';
 
 function Home() {
   return (
@@ -14,6 +16,15 @@ function Home() {
 
       {/* About Section */}
       <AboutSection />
+
+      {/* Refreshments Section */}
+      <RefreshmentsSection />
+
+      {/* Search for Rooms Section */}
+      <SearchRoomsSection />
+
+      {/* Featured Rooms Section */}
+      <FeaturedRoomsSection />
 
       {/* Feedback Section */}
       <FeedbackSection />
@@ -25,4 +36,3 @@ function Home() {
 }
 
 export default Home;
-
