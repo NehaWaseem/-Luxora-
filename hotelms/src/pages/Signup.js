@@ -1,12 +1,15 @@
-import React from 'react'
+import React from 'react';
+import './Signup.css';
+import SignupForm from './SignupForm';
+import SideComponent from './SideComponent';
 
+const Signup = () => {
+  return (
+    <div className="signup-page">
+      <SideComponent />
+      <SignupForm />
+    </div>
+  );
+};
 
-function Signup()
-{
-
-    return(
-    <h1>sLuxora - Signup page </h1>
-    )
-}
 export default Signup;
-

@@ -1,0 +1,118 @@
+/* General styling for the form container */
+.login-form-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 400px;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.6);  /* Reduced opacity for less white */
+    border-radius: 10px;
+    backdrop-filter: blur(15px);  /* Stronger blur effect */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  /* Input box container */
+  .input-box {
+    position: relative;
+    margin-bottom: 20px;
+  }
+  
+  /* Input Fields */
+  .input-box input {
+    width: 100%;
+    padding: 15px 35px 15px 15px;  /* Added more padding to make room for icons */
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;  /* White background for inputs */
+    outline: none;
+  }
+  
+  .input-box input:focus {
+    border-color: #149fb5;  /* Blue border on focus */
+  }
+  
+  .icon {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    color: #149fb5;
+    font-size: 20px;
+  }
+  
+  /* Ensure input text does not overlap with icons */
+  .input-box input[type="text"],
+  .input-box input[type="password"] {
+    padding-left: 40px;  /* Increased left padding to create space for the icons */
+  }
+  
+  /* Styling for the 'Remember Me' checkbox and 'Forgot password' link */
+  .remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    
+  }
+  
+  .remember-forgot label {
+    font-size: 14px;
+    display: inline-flex; /* Align checkbox and label text horizontally */
+    align-items: center; /* Vertically align the checkbox and label text */
+  }
+  
+  .remember-forgot input[type="checkbox"] {
+    margin-right: 5px; /* Space between checkbox and text */
+  }
+  
+  .remember-forgot a {
+    color: #353636;
+    font-size: 14px;
+    text-decoration: none;
+  }
+  
+  .remember-forgot a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Styling for the submit button */
+  button {
+    width: 100%;
+    padding: 12px;
+    background-color: #149fb5;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #149fb5;
+  }
+  
+  /* Register link styling */
+  .register-link {
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  .register-link a {
+    color: #149fb5;
+    font-size: 14px;
+    text-decoration: none;
+  }
+  
+  .register-link a:hover {
+    text-decoration: underline;
+  }
+  
