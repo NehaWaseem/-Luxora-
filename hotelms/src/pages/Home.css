@@ -1,0 +1,133 @@
+/* Root Variables */
+:root {
+  --primary-color: #7b3f00;
+  --secondary-color: #a59d92;
+  --hover-color: #ffdd57;
+  --white: #ffffff;
+  --black: #000000;
+  --padding: 20px;
+  --border-radius: 10px;
+  --font-family: serif;
+}
+
+/* Global Styles */
+body {
+  font-family: var(--font-family);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-y: auto; /* Ensures vertical scrolling */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Ensure sections stack properly */
+main {
+  flex: 1; /* Makes main content take up available space */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Section Defaults */
+section {
+  padding: var(--padding);
+  margin-bottom: var(--padding);
+  position: relative; /* Avoid overlaps */
+}
+
+/* Home Section */
+.home {
+  text-align: center;
+  background-color: var(--primary-color);
+  padding: var(--padding);
+  border-radius: var(--border-radius);
+  color: var(--white);
+}
+
+/* Hero Section */
+.hero {
+  background: url("https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=600") no-repeat center center;
+  background-size: cover;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+}
+
+.hero-content {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: var(--padding);
+  border-radius: var(--border-radius);
+  text-align: center;
+  max-width: 600px; /* Constrain the width of the content */
+}
+
+/* About Section */
+.about-section, .refreshments-section, .rooms-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--padding);
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.about-us, .refreshments-description, .search-booking {
+  max-width: 600px;
+}
+
+/* Image Slider */
+.image-slider {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--padding);
+  justify-content: center;
+}
+
+.slider img {
+  max-width: 100%;
+  border-radius: var(--border-radius);
+}
+
+/* Feedback Section */
+.feedback-section {
+  text-align: center;
+  padding: var(--padding);
+  background-color: var(--secondary-color);
+  color: var(--white);
+}
+
+.feedback-box {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: var(--padding);
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: var(--border-radius);
+}
+
+/* Footer */
+footer {
+  background-color: var(--primary-color);
+  text-align: center;
+  color: var(--white);
+  padding: var(--padding);
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .hero {
+    min-height: 60vh;
+  }
+
+  .about-us, .refreshments-description, .search-booking {
+    width: 100%;
+    padding: var(--padding);
+  }
+
+  .slider img {
+    max-width: 100%;
+    height: auto;
+  }
+}

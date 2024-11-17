@@ -48,11 +48,17 @@
     display: flex;
     align-items: center;
     margin-bottom: 20px;
-  }
-  
-  .terms input {
+    justify-content: flex-start; /* Align checkbox and privacy button to the left */
+}
+
+.terms input {
     margin-right: 10px;
-  }
+}
+
+.terms label {
+    margin-right: 10px; /* Adjust the spacing between the checkbox and the label/button */
+}
+
   
   .submit-button {
     padding: 10px 20px;

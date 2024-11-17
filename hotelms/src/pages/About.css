@@ -1,0 +1,103 @@
+/* About Us Hero Section */
+.hero-section_about {
+    position: relative;
+    background-image: url('./images/cozyhotel.webp');
+    background-size: cover;
+    background-position: center;
+    padding: 100px 20px;
+    text-align: center;
+    color: white;
+  }
+  
+  .hero-overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 50px;
+  }
+  
+  .about-section, .team-section {
+    padding: 40px 20px;
+    text-align: center;
+  }
+  
+  .team-section {
+    background-color: #f9f9f9;
+  }
+  
+  .team-members {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .team-member img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+  }
+  
+  .team-member h3 {
+    margin-top: 10px;
+    font-size: 1.2em;
+  }
+  
+  .team-member p {
+    color: #555;
+  }
+  
+  .about-us-page {
+    font-family: Arial, sans-serif;
+    width: 100% !important;
+  }
+  
+  .hero-section {
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    color: white;
+    text-align: center;
+    width: 100%;
+  }
+  
+  .hero-overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  /* Reviews Section */
+  .reviews-section {
+    width: 70%;
+    margin: auto;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  /* Review Box Styling with White Border */
+  .review-box {
+    background-color: #f9f9f9;
+    border: 2px solid white; /* White border */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    margin-bottom: 20px;
+  }
+  
+  .review-box h3 {
+    margin-bottom: 10px;
+    font-size: 1.2em;
+    color: #8b4513; /* Matching brown color */
+  }
+  
+  .review-box p {
+    font-size: 1em;
+    margin-bottom: 10px;
+    color: #555;
+  }
+  
+  .review-box .star-rating {
+    color: #ffcc00; /* Gold stars */
+  }
+  
