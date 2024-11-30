@@ -1,0 +1,110 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Body styling */
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+  
+  /* Full container for the login form and image */
+  .login-container {
+    display: flex;
+    width: 100%;
+    height: 100vh;  /* Full viewport height */
+    position: relative;  /* This will allow absolute positioning of the login form */
+  }
+  
+  /* Left side - Image */
+  .login-image {
+    width: 100vw;  /* Full width of the viewport */
+    height: 100vh;  /* Full height of the viewport */
+    position: relative;
+  }
+  
+  .login-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;  /* Ensures the image covers the entire container */
+  }
+  
+  /* Login Form Container - Positioned Over Image */
+  .login-form-container {
+    position: absolute;  /* Position this container over the image */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);  /* Center the form */
+    width: 100%;
+    max-width: 400px;  /* Max width of the form */
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.8);  /* Semi-transparent background */
+    border-radius: 10px;  /* Rounded corners */
+    backdrop-filter: blur(10px);  /* Apply blur to the background behind the form */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);  /* Optional shadow for better visibility */
+  }
+  
+  /* Form Title */
+  .login-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+  }
+  
+  /* Input fields styling */
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    display: block;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  input:focus {
+    outline: none;
+    border-color: #0bb3ab;
+  }
+  
+  /* Submit Button */
+  .submit-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #0bb3ab;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .submit-btn:hover {
+    background-color: #0bb3ab;
+  }
+  
+  @media (max-width: 768px) {
+    .login-form-container {
+      width: 90%;  /* On smaller screens, use more width */
+      max-width: 350px;
+    }
+  }
+  

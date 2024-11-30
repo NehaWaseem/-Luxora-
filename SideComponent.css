@@ -1,0 +1,25 @@
+.side-image {
+    background: url('https://i.pinimg.com/736x/16/04/a8/1604a8594770b91f10398676b865d424.jpg') no-repeat center center;
+    background-size: cover;
+    flex: 1;
+    display: flex;
+    justify-content:flex-start;
+    align-items:center;
+    color: white;
+    height: 100%;
+  }
+  
+  .side-text {
+    text-align:start;
+    max-width: 50%;
+  }
+  
+  .side-text h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+  
+  .side-text p {
+    font-size: 18px;
+  }
+  
