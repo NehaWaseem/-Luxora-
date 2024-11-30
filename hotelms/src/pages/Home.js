@@ -1,5 +1,5 @@
 import React from 'react';
-import './home.css'; // Import the CSS for styling
+import './Home.css'; // Import the CSS for styling
 import HeroSection from './HeroSection';
 import AboutSection from './AboutSection';
 import RefreshmentsSection from './RefreshmentsSection';
