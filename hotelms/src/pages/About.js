@@ -3,9 +3,10 @@ import { Rating } from '@mui/material';
 
 const About = () => {
   return (
-    <div className="about-us-page" style={{width:"100%"}}>
+    <div className="about-us-page bg-parent" style={{width:"100%"}}>
+       <div class="bg"></div>
       {/* Hero Section */}
-      <section
+      <section style={{marginTop:"100px"}}
         className="hero-section_about"
         
 
@@ -17,7 +18,7 @@ const About = () => {
       </section>
 
       {/* About Us Section */}
-      <section className="about-section">
+      <section id="about-sec" className="">
         <h2>About Us</h2>
         <p>
           Welcome to LUXORA Hotel. Our hotel streamlines the experience with efficient room reservations,

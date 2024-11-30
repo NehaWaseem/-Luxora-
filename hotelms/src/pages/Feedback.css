@@ -10,7 +10,6 @@
     color: #333;
     height: 100vh; /* Full viewport height */
     width: 100vw; /* Full viewport width */
-    overflow: hidden; /* Prevent scrollbars */
     padding: 20px; /* Add padding for breathing room */
 }
 
