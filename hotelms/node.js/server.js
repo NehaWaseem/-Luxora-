@@ -15,7 +15,7 @@ app.use(bodyParser.json()); // For parsing JSON bodies
 app.use('/api/auth', authRoutes); // Use the auth routes
 
 // Server Setup
-const PORT = process.env.PORT || 1433;
+const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

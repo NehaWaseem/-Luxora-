@@ -1,7 +1,16 @@
 import React from 'react';
 import './Home.css';
+import { useNavigate } from 'react-router-dom';
+
+
 
 function SearchRoomsSection() {
+
+  const navigate = useNavigate();
+
+  const handleSearch = () =>{
+    navigate('/rooms')
+  }
   return (
     <section id="rooms" className="search-rooms-section">
       <div className="search-booking">
@@ -36,7 +45,7 @@ function SearchRoomsSection() {
           </select>
         </div>
         <div className="search-button-container">
-          <button>Search</button>
+          <button onClick = {handleSearch}>Search</button>
         </div>
       </div>
     </section>

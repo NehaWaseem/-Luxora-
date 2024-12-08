@@ -1,0 +1,131 @@
+/* Make the page scrollable */
+.rooms-page {
+    position: relative;
+    width: 100%;
+    min-height: 100vh; /* Allow page to expand and be scrollable */
+    padding-top: 60px; /* Ensure space for the navbar */
+    overflow-y: auto; /* Enable vertical scrolling */
+  }
+  
+  .background-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+  }
+  
+  .flashcards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px; /* Increased spacing between flashcards */
+    padding: 20px;
+    justify-content: center;
+    margin-top: 20px; /* Offset below the navbar */
+  }
+  
+  .flashcard {
+    position: relative;
+    width: 300px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    text-align: center;
+    opacity: 0; /* Start with cards hidden */
+    animation: fadeInUp 0.8s forwards, bounceIn 1s ease-out forwards; /* Apply initial fade-in and bounce animation */
+    backdrop-filter: blur(10px); /* Apply blur effect to the flashcard background */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Add smooth scale and shadow on hover */
+  }
+  
+  .flashcard:hover {
+    transform: scale(1.1); /* Slightly enlarge the card on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Increase shadow size */
+  }
+  
+  .flashcard-content {
+    padding: 10px;
+  }
+  
+  .flashcard-image {
+    width: 80%; /* Image should be 80% of the card width */
+    height: 200px;
+    object-fit: cover;
+    margin: 0 auto;
+    border-radius: 10px;
+    padding: 10px 0;
+  }
+  
+  .flashcard-description {
+    padding: 10px 15px;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .flashcard-info {
+    padding: 10px;
+    font-size: 12px;
+    color: #555;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+  
+  .room-no,
+  .status {
+    font-weight: bold;
+  }
+  
+  .booking-button {
+    position: relative;
+    padding: 12px;
+    padding-bottom: 12px;
+    border-radius: 25px;
+    background-color: #007bff;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    margin-top: 10px;
+    width: 90%; /* Make the button width nearly equal to the card width */
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 20px; /* Ensure the button does not touch the bottom of the flashcard */
+  }
+  
+  .booking-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: scale(1.05); /* Slightly enlarge the button on hover */
+  }
+  
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes bounceIn {
+    0% {
+      transform: translateY(50px);
+      opacity: 0;
+    }
+    60% {
+      transform: translateY(-10px);
+      opacity: 1;
+    }
+    80% {
+      transform: translateY(5px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  
