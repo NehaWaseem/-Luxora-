@@ -9,6 +9,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Dashboard from './pages/Dashboard';
 import Rooms from './pages/Rooms'
+import Booking from './pages/Booking';
 
 
 
@@ -24,6 +25,7 @@ const App = () => {
         <Route path="/contact" element={<Feedback />} />
         <Route path="/dashboard" element ={<Dashboard />} />
         <Route path="/rooms" element={<Rooms/>}/>
+        <Route path="/booking" element={<Booking/>}/>
       </Routes>
     </Router>
   );

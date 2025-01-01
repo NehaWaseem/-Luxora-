@@ -1,5 +1,6 @@
 import React from 'react';
 import './Rooms.css';
+import { useNavigate } from 'react-router-dom';
 
 const flashcards = [
   {
@@ -48,13 +49,19 @@ const flashcards = [
 ];
 
 function Rooms() {
+  const navigate = useNavigate();
+
+  const handleBookingClick = (room) => {
+    navigate('/booking', { state: room });
+  };
+
   return (
     <div className="rooms-page">
       {/* Background Image */}
       <div
         className="background-image"
         style={{
-          backgroundImage: `url('/rooms.jpg')`, // Ensure the image is in the 'public' folder
+          backgroundImage: `url('/rooms.jpg')`,
         }}
       ></div>
 
@@ -74,7 +81,12 @@ function Rooms() {
                 <span className="status">Status: {card.status}</span>
               </div>
             </div>
-            <button className="booking-button">Book Now</button>
+            <button
+              className="booking-button"
+              onClick={() => handleBookingClick(card)}
+            >
+              Book Now
+            </button>
           </div>
         ))}
       </div>
