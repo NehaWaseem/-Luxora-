@@ -11,7 +11,7 @@ const SignupForm = () => {
 
     e.preventDefault();
     alert('Account created successfully ! ');
-    navigate('/');
+    navigate('/home');
   };
 
 

@@ -21,7 +21,7 @@ const handleLogin = (e)=>{
   if(username === "LuxoraUser" && password ==="Luxora@5")
   {
     alert('Authentication successful  , LOGGED IN ! ');
-    navigate('/');
+    navigate('/home');
   }
   else
   {
