@@ -4,47 +4,31 @@ import { useNavigate } from 'react-router-dom';
 
 const flashcards = [
   {
-    id: 1,
-    roomNo: '101',
+    roomId: 1,
     image: '/luxury.webp',
-    description: 'A cozy room with a queen-sized bed and a beautiful view.',
-    status: 'Available',
+    rtype: 'luxury suite',
+    roomcapacity: 2,
+    detail: 'Luxurious suite with a king-sized bed and jacuzzi.',
+    priceperday: 200.000,
+    roomstatus: 'available',
   },
   {
-    id: 2,
-    roomNo: '102',
+    roomId: 2,
     image: '/luxury.webp',
-    description: 'Spacious room with modern amenities and a private balcony.',
-    status: 'Booked',
+    rtype: 'regular room',
+    roomcapacity: 4,
+    detail: 'Spacious room with modern amenities and a private balcony.',
+    priceperday: 150.000,
+    roomstatus: 'booked',
   },
   {
-    id: 3,
-    roomNo: '103',
+    roomId: 3,
     image: '/luxury.webp',
-    description: 'Luxurious suite with a king-sized bed and a jacuzzi and great ambiance',
-    status: 'Available',
-  },
-  // Add more room data as needed
-  {
-    id: 1,
-    roomNo: '101',
-    image: '/luxury.webp',
-    description: 'A cozy room with a queen-sized bed and a beautiful view.',
-    status: 'Available',
-  },
-  {
-    id: 2,
-    roomNo: '102',
-    image: '/luxury.webp',
-    description: 'Spacious room with modern amenities and a private balcony.',
-    status: 'Booked',
-  },
-  {
-    id: 3,
-    roomNo: '103',
-    image: '/luxury.webp',
-    description: 'Luxurious suite with a king-sized bed and a jacuzzi and great ambiance',
-    status: 'Available',
+    rtype: 'luxury suite',
+    roomcapacity: 3,
+    detail: 'Suite with excellent ambiance and a great view.',
+    priceperday: 250.000,
+    roomstatus: 'inuse',
   },
 ];
 
@@ -55,7 +39,11 @@ function Rooms() {
     navigate('/booking', { state: room });
   };
 
-  return (
+   // Filter only available rooms
+   const availableRooms = flashcards.filter((room) => room.roomstatus === 'available');
+
+
+   return (
     <div className="rooms-page">
       {/* Background Image */}
       <div
@@ -67,18 +55,24 @@ function Rooms() {
 
       {/* Flashcards Section */}
       <div className="flashcards-container">
-        {flashcards.map((card) => (
-          <div key={card.id} className="flashcard">
+        {availableRooms.map((card) => (
+          <div key={card.roomId} className="flashcard">
             <div className="flashcard-content">
               <img
-                src={card.image}
-                alt={`Room ${card.id}`}
+                src="/luxury.webp"
+                alt={`Room ${card.roomId}`}
                 className="flashcard-image"
               />
-              <p className="flashcard-description">{card.description}</p>
+              <p className="flashcard-description">{card.detail}</p>
               <div className="flashcard-info">
-                <span className="room-no">Room No: {card.roomNo}</span>
-                <span className="status">Status: {card.status}</span>
+                <span className="room-no">Room Type: {card.rtype}</span>
+                <span className="room-capacity">
+                  Capacity: {card.roomcapacity} {card.roomcapacity > 1 ? 'people' : 'person'}
+                </span>
+                <span className="price-per-day">
+                  Price per Day: ${card.priceperday.toFixed(2)}
+                </span>
+                <span className="status">Status: {card.roomstatus}</span>
               </div>
             </div>
             <button

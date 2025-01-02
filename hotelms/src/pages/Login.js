@@ -9,7 +9,7 @@ function Login() {
       <div className="login-image">
         <img
          /*src="https://static-new.lhw.com/HotelImages/Final/LW0430/lw0430_177729896_720x450.jpg"*/
-         src={`${process.env.PUBLIC_URL}/images/k.png`}
+         src={`${process.env.PUBLIC_URL}/images/bye.webp`}
           alt="Luxora Hotel"
           className="login-img"
         />

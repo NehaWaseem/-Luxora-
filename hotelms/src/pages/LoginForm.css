@@ -29,7 +29,7 @@
   .input-box input {
     width: 100%;
     padding: 15px 35px 15px 15px;  /* Added more padding to make room for icons */
-    font-size: 16px;
+    font-size: 13px;
     border: 1px solid #ddd;
     border-radius: 5px;
     background-color: #fff;  /* White background for inputs */
@@ -88,7 +88,7 @@
   button {
     width: 100%;
     padding: 12px;
-    background-color: #149fb5;
+    background-color: #0e7989;
     color: white;
     font-size: 16px;
     border: none;
@@ -107,7 +107,7 @@
   }
   
   .register-link a {
-    color: #149fb5;
+    color: #1d5b67;
     font-size: 14px;
     text-decoration: none;
   }
