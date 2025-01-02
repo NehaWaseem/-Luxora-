@@ -35,7 +35,7 @@ function Booking() {
     <div className="booking-page">
       {/* New Image Container */}
       <div className="image-container">
-        <h1>Reservations</h1>
+      <h1 class="reservation-heading">Reservation</h1>
       </div>
 
       <div className="booking-content">
