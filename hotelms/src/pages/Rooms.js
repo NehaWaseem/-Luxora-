@@ -77,13 +77,13 @@ function Rooms() {
                     Status: {card.roomstatus === 'available' ? 'Available' : 'Unavailable'}
                   </span>
                 </div>
+                <button
+                  className="booking-button"
+                  onClick={() => handleBookingClick(card)}
+                >
+                  Book Now
+                </button>
               </div>
-              <button
-                className="booking-button"
-                onClick={() => handleBookingClick(card)}
-              >
-                Book Now
-              </button>
             </div>
           ))
         )}
