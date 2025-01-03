@@ -29,7 +29,6 @@ app.post('/login', async (req, res) => {
 
   try {
     const pool = await connect(config);
-
     const result = await pool.request()
       .input('username', pkg.NVarChar, username)
       .query('SELECT * FROM Users WHERE username = @username');
@@ -51,7 +50,7 @@ app.post('/login', async (req, res) => {
   }
 });
 
-// User signup route
+// User Registration route
 app.post('/signup', async (req, res) => {
   const { username, email, upassword, uaddress, phonenum, dateofreg, usertype } = req.body;
 
@@ -66,14 +65,34 @@ app.post('/signup', async (req, res) => {
       .input('phonenum', pkg.NVarChar, phonenum)
       .input('dateofreg', pkg.Date, dateofreg)
       .input('usertype', pkg.NVarChar, usertype)
-      .query(
-        `INSERT INTO Users (username, email, upassword, uaddress, phonenum, dateofreg, usertype)
-         VALUES (@username, @email, @upassword, @uaddress, @phonenum, @dateofreg, @usertype)`
-      );
+      .query(`
+        INSERT INTO Users (username, email, upassword, uaddress, phonenum, dateofreg, usertype)
+        VALUES (@username, @email, @upassword, @uaddress, @phonenum, @dateofreg, @usertype)
+      `);
 
     res.status(201).json({ message: 'User created successfully' });
   } catch (err) {
     console.error('Error inserting user:', err);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+// Backend API Endpoint to Get Available Rooms
+app.get('/available-rooms', async (req, res) => {
+  try {
+    const pool = await connect(config);
+
+    const result = await pool.request()
+      .query(`
+        SELECT r.roomId, r.rtype, r.roomcapacity, r.detail, r.priceperday, r.roomstatus
+        FROM RoomInfo r
+        JOIN AvailableRooms ar ON r.roomId = ar.roomId
+        WHERE ar.status = 'available'
+      `);
+
+    res.status(200).json(result.recordset); // Send available rooms data
+  } catch (err) {
+    console.error('Error fetching available rooms:', err);
     res.status(500).json({ message: 'Internal server error' });
   }
 });
