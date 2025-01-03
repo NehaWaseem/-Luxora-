@@ -4,7 +4,7 @@ const { connect } = pkg;
 const config = {
   user: 'luxorauser', // SQL Server login username
   password: 'luxora6581', // SQL Server login password
-  server: '192.168.56.1', // Replace with your server's address
+  server: '192.168.18.24', // Replace with your server's address
   database: 'Luxora', // Replace with your database name
   options: {
     encrypt: false, // Set to true if using Azure

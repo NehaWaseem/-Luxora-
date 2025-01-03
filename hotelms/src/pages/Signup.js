@@ -6,7 +6,7 @@ import SideComponent from './SideComponent';
 const Signup = () => {
   return (
     <div className="signup-page">
-      <SideComponent />
+      <SideComponent/>
       <SignupForm />
     </div>
   );

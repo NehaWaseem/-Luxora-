@@ -1,25 +1,30 @@
-.side-image {
-    background: url('https://i.pinimg.com/736x/16/04/a8/1604a8594770b91f10398676b865d424.jpg') no-repeat center center;
-    background-size: cover;
-    flex: 1;
-    display: flex;
-    justify-content:flex-start;
-    align-items:center;
-    color: white;
-    height: 100%;
-  }
-  
-  .side-text {
-    text-align:start;
-    max-width: 50%;
-  }
-  
-  .side-text h2 {
-    font-size: 36px;
-    margin-bottom: 20px;
-  }
-  
-  .side-text p {
-    font-size: 18px;
-  }
-  
+/* SideComponent.css */
+.container {
+  display: flex;
+  height: 100vh; /* Full height */
+}
+
+.image-side {
+  flex: 3; /* Image side takes more space */
+  background-image: url('./teal.webp'); /* Replace with your image URL */
+  background-size: cover;
+  background-position: center;
+  height: 630px;
+  width: 500px;
+}
+
+h1{
+  color: beige;
+}
+
+.content-side {
+  background-image: url('./mux.png'); /* Replace with your image URL */
+  flex: 1; /* Content side takes 1 part of the available space */
+  background-color: #227e89;
+  padding: 10; /* Remove padding from content-side */
+  height: 630px; /* Full vertical height */
+  display: flex;
+  color: aliceblue;
+  justify-content: flex-end; /* Align children (form) to the right */
+  align-items: center; /* Vertically center the form */
+}

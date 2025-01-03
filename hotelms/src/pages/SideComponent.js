@@ -3,11 +3,18 @@ import './SideComponent.css';
 
 const SideComponent = () => {
   return (
-    <div className="side-image">
-      <img src="https://i.pinimg.com/736x/c8/37/3c/c8373c4712ef4787b907acb9dd0378f8.jpg" alt="Astronaut" />
-      <div className="side-text">
-        <h2>Exploring new frontiers, one step at a time.</h2>
-        <p> Luxora , where luxury meet you</p>
+    <div className="container">
+      <div className="image-side">
+        {/* You can add an img tag if you'd like a direct img instead of background */}
+        {/* <img src="your-image-url.jpg" alt="Side Image" className="side-image" /> */}
+      </div>
+      <div className="content-side">
+        <h1>Luxora</h1>
+
+        <p> 
+          Where luxury meets you ...
+        </p>
+
       </div>
     </div>
   );
