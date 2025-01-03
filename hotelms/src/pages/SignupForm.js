@@ -5,20 +5,25 @@ import './SignupForm.css';
 const SignupForm = () => {
   const navigate = useNavigate();
 
-  // State hooks for form inputs
+  // Stating hooks for form inputs
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [upassword, setUpassword] = useState('');
   const [uaddress, setUaddress] = useState('');
   const [phonenum, setPhonenum] = useState('');
-  const [dateofreg, setDateofreg] = useState(new Date().toISOString().split('T')[0]); // Current date
+  const dateofreg = new Date().toISOString().split('T')[0]; // Current date
   const [usertype] = useState('Guest'); // Fixed as 'Guest'
 
-  // Handle form submission
+  // Handling form submission
   const handleSignup = async (e) => {
     e.preventDefault();
-  
-    // Prepare data for backend
+
+    if (!username || !email || !upassword) {
+      alert('Please fill in all required fields.');
+      return;
+    }
+
+    // Preparing data for backend
     const userData = {
       username,
       email,
@@ -28,9 +33,9 @@ const SignupForm = () => {
       dateofreg,
       usertype,
     };
-  
+
     try {
-      // Send data to backend
+      // Sending data to backend
       const response = await fetch('http://localhost:3000/signup', {
         method: 'POST',
         headers: {
@@ -38,21 +43,23 @@ const SignupForm = () => {
         },
         body: JSON.stringify(userData),
       });
-  
-      const data = await response.json();
-  
+
       if (response.ok) {
+        const data = await response.json();
         alert(`Account created successfully! Your User ID is ${data.userId}`);
-        navigate('/home'); // Navigate to the home page after successful signup
+        navigate('/home'); 
+      } else if (response.status === 404) {
+        alert('Signup route not found. Please check your backend configuration.');
       } else {
-        alert(`Error: ${data.message}`);
+        const errorData = await response.json();
+        alert(`Error: ${errorData.message}`);
       }
     } catch (error) {
       console.error('Error:', error);
-      alert('Something went wrong. Please try again.');
+      alert('Failed to connect to the server. Please ensure the backend is running and try again.');
     }
   };
-  
+
   return (
     <div className="signup-container">
       <div className="signup-form">
@@ -92,7 +99,7 @@ const SignupForm = () => {
             value={phonenum}
             onChange={(e) => setPhonenum(e.target.value)}
           />
-          
+
           {/* Date of Registration (disabled, auto-generated) */}
           <input
             type="date"
