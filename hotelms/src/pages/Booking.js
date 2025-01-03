@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import './Booking.css';
-
-let nextBookingId = 5;
 
 function Booking() {
   const location = useLocation();
@@ -10,12 +8,33 @@ function Booking() {
 
   const [checkOutDate, setCheckOutDate] = useState('');
   const [bookingDetails, setBookingDetails] = useState(null);
-
+  const [nextBookingId, setNextBookingId] = useState(null);
   const [userId, setUserId] = useState(1); // Default user ID
   const [roomId, setRoomId] = useState(room.roomId); // Default room ID
   const [checkInDate] = useState(new Date().toISOString().split('T')[0]); // Current date
 
-  const handleConfirmBooking = () => {
+  // fetching maximum booking ID from the database and set the nextBookingId
+  useEffect(() => {
+    const fetchMaxBookingId = async () => {
+      try {
+        const response = await fetch('http://localhost:3000/max-booking-id'); // Replace with your API endpoint
+        const data = await response.json();
+        if (response.ok) {
+          setNextBookingId(data.maxBookingId + 1); // Increment maxBookingId by 1
+        } else {
+          console.error('Failed to fetch max booking ID:', data.message);
+        }
+      } catch (error) {
+        console.error('Error fetching max booking ID:', error);
+      }
+    };
+
+    fetchMaxBookingId();
+  }, []);
+
+  // Handle booking confirmation
+  const handleConfirmBooking = async () => {
+    
     const currentBookingDetails = {
       bookingId: nextBookingId,
       userId,
@@ -25,17 +44,34 @@ function Booking() {
       check_out_date: checkOutDate,
     };
 
-    nextBookingId += 1;
+    try {
+      const response = await fetch('http://localhost:3000/create-booking', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(currentBookingDetails),
+      });
 
-    setBookingDetails(currentBookingDetails);
-    alert('Booking Confirmed!');
+      if (response.ok) {
+        setBookingDetails(currentBookingDetails);
+        alert('Booking Confirmed!');
+      } else {
+        const errorData = await response.json();
+        console.error('Failed to save booking:', errorData.message);
+        alert('Failed to confirm booking. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error saving booking:', error);
+      alert('An error occurred while confirming the booking.');
+    }
   };
 
   return (
     <div className="booking-page">
       {/* New Image Container */}
       <div className="image-container">
-      <h1 class="reservation-heading">Reservation</h1>
+        <h1 className="reservation-heading">Reservation</h1>
       </div>
 
       <div className="booking-content">
@@ -46,7 +82,7 @@ function Booking() {
             <label htmlFor="bookingId">
               <strong>Booking ID:</strong>
             </label>
-            <input type="text" id="bookingId" value={nextBookingId} readOnly />
+            <input type="text" id="bookingId" value={nextBookingId || ''} readOnly />
           </div>
           <div className="form-group">
             <label htmlFor="userId">
@@ -86,7 +122,7 @@ function Booking() {
           <button
             className="confirm-booking-button"
             onClick={handleConfirmBooking}
-            disabled={!checkOutDate}
+            disabled={!checkOutDate || !nextBookingId}
           >
             Confirm Booking
           </button>

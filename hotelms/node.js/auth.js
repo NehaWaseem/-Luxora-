@@ -40,7 +40,10 @@ app.post('/login', async (req, res) => {
     const user = result.recordset[0];
 
     if (password === user.upassword) {
-      return res.status(200).json({ message: 'Login successful' });
+      return res.status(200).json({ 
+        message: 'Login successful', 
+        userId: user.userId // Return userId on successful login
+      });
     } else {
       return res.status(401).json({ message: 'Invalid password' });
     }
@@ -96,6 +99,46 @@ app.get('/available-rooms', async (req, res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 });
+
+// Endpoint for getting the booking id 
+app.get('/max-booking-id', async (req, res) => {
+  try {
+    const pool = await connect(config);
+    const result = await pool.request()
+      .query('SELECT MAX(bookingId) AS maxBookingId FROM Booking');
+    const maxBookingId = result.recordset[0].maxBookingId || 0; // Default to 0 if no bookings exist
+    res.json({ maxBookingId });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Error fetching max booking ID' });
+  }
+});
+
+// Endpoint for reservation 
+app.post('/create-booking', async (req, res) => {
+  const { userId, roomId, bookingStatus, check_in_date, check_out_date } = req.body;
+
+  try {
+    const pool = await connect(config);
+
+    await pool.request()
+      .input('userId', pkg.Int, userId)
+      .input('roomId', pkg.Int, roomId)
+      .input('bookingStatus', pkg.NVarChar, bookingStatus)
+      .input('check_in_date', pkg.Date, check_in_date)
+      .input('check_out_date', pkg.Date, check_out_date)
+      .query(`
+        INSERT INTO Booking (userId, roomId, bookingStatus, check_in_date, check_out_date)
+        VALUES (@userId, @roomId, @bookingStatus, @check_in_date, @check_out_date)
+      `);
+
+    res.status(201).json({ message: 'Booking created successfully' });
+  } catch (error) {
+    console.error('Error creating booking:', error);
+    res.status(500).json({ message: 'Error creating booking' });
+  }
+});
+
 
 // Start the server
 app.listen(port, () => {
