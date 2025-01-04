@@ -81,19 +81,20 @@ app.post('/signup', async (req, res) => {
 });
 
 // Backend API Endpoint to Get Available Rooms
+// Backend API Endpoint to Get Available Rooms
 app.get('/available-rooms', async (req, res) => {
   try {
     const pool = await connect(config);
 
     const result = await pool.request()
       .query(`
-        SELECT r.roomId, r.rtype, r.roomcapacity, r.detail, r.priceperday, r.roomstatus
+        SELECT r.roomId, r.rtype, r.roomcapacity, r.detail, r.priceperday, ar.status AS roomstatus
         FROM RoomInfo r
         JOIN AvailableRooms ar ON r.roomId = ar.roomId
         WHERE ar.status = 'available'
       `);
 
-    res.status(200).json(result.recordset); // Send available rooms data
+    res.status(200).json(result.recordset); // Send only rooms with 'available' status
   } catch (err) {
     console.error('Error fetching available rooms:', err);
     res.status(500).json({ message: 'Internal server error' });
