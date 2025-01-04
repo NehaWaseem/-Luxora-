@@ -3,7 +3,7 @@ import "./Details.css";
 
 function Details() {
   return (
-    <section className="hero">
+    <section className="details">
       <h1>About Us</h1>
      
     </section>
