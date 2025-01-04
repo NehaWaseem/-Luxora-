@@ -1,0 +1,19 @@
+.hero {
+    background-image: url('./deep\ blue.webp');
+    text-align: center;
+    position:relative;
+    padding: 100px 20px;
+    color: #fff;
+  }
+  
+  .hero h1 {
+    font-size: 5rem;
+    margin-bottom: 20px;
+    background-color: antiquewhite;
+  }
+  
+  .hero p {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+  }
+  

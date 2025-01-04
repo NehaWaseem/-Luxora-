@@ -9,7 +9,7 @@ const SideComponent = () => {
         {/* <img src="your-image-url.jpg" alt="Side Image" className="side-image" /> */}
       </div>
       <div className="content-side">
-        <h1>Luxora</h1>
+        <h1 className='side'>Luxora</h1>
 
         <p> 
           Where luxury meets you ...
