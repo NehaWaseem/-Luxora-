@@ -1,7 +1,7 @@
 .details{
-    background-image: url('./deep\ blue.webp');
+    background-image: url('./dark.webp');
     background-size:cover;
-background-position: center;
+    background-position: center;
   height: 80vh;
   display: flex;
   align-items: center;
