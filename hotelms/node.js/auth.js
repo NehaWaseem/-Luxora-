@@ -140,6 +140,32 @@ app.post('/create-booking', async (req, res) => {
   }
 });
 
+// Endpoint to submit feedback
+app.post('/submit-feedback', async (req, res) => {
+  const { userID, bookingID, comments, rating, createdDate } = req.body;
+
+  try {
+    const pool = await connect(config);
+
+    await pool.request()
+      .input('userID', pkg.Int, userID)
+      .input('bookingID', pkg.Int, bookingID)
+      .input('comments', pkg.NVarChar, comments)
+      .input('rating', pkg.Int, rating)
+      .input('createdDate', pkg.DateTime, createdDate)
+      .query(`
+        INSERT INTO Feedback (userID, bookingID, comments, rating, createdDate)
+        VALUES (@userID, @bookingID, @comments, @rating, @createdDate)
+      `);
+
+    res.status(200).json({ message: 'Feedback submitted successfully' });
+  } catch (err) {
+    console.error('Error submitting feedback:', err);
+    res.status(500).json({ message: 'Error submitting feedback' });
+  }
+});
+
+
 
 // Start the server
 app.listen(port, () => {

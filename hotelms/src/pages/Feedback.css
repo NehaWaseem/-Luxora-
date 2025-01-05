@@ -32,7 +32,7 @@
     justify-content: space-between; /* Space out form elements */
     width: 100%; /* Allow the form to stretch horizontally */
     max-width: 500px; /* Constrain the width */
-    height: 85%; /* Allow the form to occupy full height within its container */
+    height: 100%; /* Allow the form to occupy full height within its container */
 }
 
 .image {

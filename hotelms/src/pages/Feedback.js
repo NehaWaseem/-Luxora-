@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Feedback.css";
 
 const Feedback = () => {
@@ -6,9 +6,27 @@ const Feedback = () => {
   const [bookingID, setBookingID] = useState(""); // Booking ID input
   const [comments, setComments] = useState(""); // Comments input
   const [rating, setRating] = useState(3); // Star rating (default to 3)
+  const [createdDate, setCreatedDate] = useState(""); // Current Date (Created Date)
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e) => {
+  useEffect(() => {
+    // Get userID and bookingID from localStorage
+    const storedUserID = localStorage.getItem('userID');
+    const storedBookingID = localStorage.getItem('bookingID');
+
+    if (storedUserID) {
+      setUserID(storedUserID); // Set userID from localStorage
+    }
+    if (storedBookingID) {
+      setBookingID(storedBookingID); // Set bookingID from localStorage
+    }
+
+    // Set the current date for the createdDate (in yyyy-mm-dd format)
+    const currentDate = new Date().toISOString().split('T')[0];
+    setCreatedDate(currentDate);
+  }, []);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Prepare feedback data
@@ -17,13 +35,29 @@ const Feedback = () => {
       bookingID,
       comments,
       rating,
-      createdDate: new Date().toISOString(),
+      createdDate, // Use current date
     };
 
     console.log("Feedback Submitted:", feedbackData);
 
-    // Reset the form after submission
-    setSubmitted(true);
+    // Make a request to save the feedback to the backend
+    try {
+      const response = await fetch('http://localhost:3000/submit-feedback', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(feedbackData),
+      });
+
+      if (response.status === 200) {
+        setSubmitted(true);
+      } else {
+        alert('Error submitting feedback');
+      }
+    } catch (err) {
+      console.error('Error during feedback submission:', err);
+    }
   };
 
   return (
@@ -72,6 +106,15 @@ const Feedback = () => {
               value={comments}
               onChange={(e) => setComments(e.target.value)}
               required
+            />
+
+            {/* Created Date Field */}
+            <label htmlFor="createdDate">Created Date</label>
+            <input
+              type="date"
+              id="createdDate"
+              value={createdDate} // Set the current date here
+              readOnly // Make this field read-only
             />
 
             {/* Submit Button */}
