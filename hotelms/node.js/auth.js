@@ -14,7 +14,7 @@ app.use(cors());
 const config = {
   user: 'luxorauser',
   password: 'luxora6581',
-  server: '192.168.18.24',
+  server: '192.168.1.16',
   database: 'Luxora',
   options: {
     encrypt: false,

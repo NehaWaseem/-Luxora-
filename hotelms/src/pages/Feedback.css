@@ -19,7 +19,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 90%; /* Form spans 90% of the viewport height */
+    height: 100%; /* Form spans 90% of the viewport height */
 }
 
 .feedback-form {

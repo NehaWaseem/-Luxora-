@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Home.css';
 
 function FeedbackSection() {
@@ -10,6 +11,8 @@ function FeedbackSection() {
     '"Best hotel experience ever!" - Alice Cooper',
   ];
 
+  const navigate = useNavigate(); // Initialize navigate
+
   useEffect(() => {
     const interval = setInterval(() => {
       setFeedbackIndex((prevIndex) => (prevIndex + 1) % reviews.length);
@@ -18,12 +21,16 @@ function FeedbackSection() {
     return () => clearInterval(interval);
   }, [reviews.length]);
 
+  const handleFeedbackClick = () => {
+    navigate('/contact'); // Navigate to the Feedback page
+  };
+
   return (
     <section id="feedback" className="feedback-section">
       <h3>Customer Feedback</h3>
       <div className="feedback-box">
         <p>{reviews[feedbackIndex]}</p>
-        <button>Give Feedback</button>
+        <button  onClick={handleFeedbackClick} >Give Feedback</button>
       </div>
     </section>
   );
