@@ -1,36 +1,95 @@
+/* User Dashboard */
 .user-dashboard {
-  padding: 20px;
-  max-width: 800px;
-  margin: 0 auto;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column; /* Arrange elements vertically */
+  align-items: flex-start; /* Align content to the left */
+  padding-top: 100px; /* Space above the dashboard for the banner */
+  padding-left: 20px; /* Optional: Add padding to avoid touching the screen edge */
+  background-image: url('./waves.png'); /* Set a background image */
+  background-size:cover; /* Make sure the background covers the entire container */
+  min-height: 100vh; /* Ensure the background covers the full screen height */
+  position: relative; /* To make sure it holds relative positioning */
+  z-index: 0; /* Ensure the background is behind other elements */
 }
 
+/* Narrow Image Container */
+.image-banner {
+  width: 100%; /* Full width of the screen */
+  height: 250px; /* Adjust height as needed */
+  overflow: hidden; /* Ensures no overflow */
+  position: absolute; /* Ensures the banner stays at the top of the screen */
+  top: 0; /* Aligns the banner to the top of the screen */
+  left: 0; /* Aligns the banner to the left edge of the screen */
+  right: 0; /* Ensures full width with no spacing */
+  z-index: 1; /* Move the banner on top of the background image */
+}
+
+.banner-image {
+  width: 100%; /* Make the image responsive */
+  height: 100%; /* Fill the container's height */
+  object-fit: cover; /* Ensures the image fills the container without distortion */
+}
+
+/* Dashboard Form */
 .dashboard-form {
-  text-align: center;
+  background-image: url('./beige.png'); /* Background image for the form */
+  border-radius: 10px; /* Rounded corners */
+  padding: 20px; /* Inner spacing */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect for depth */
+  position: relative; /* To position over the banner */
+  z-index: 2; /* Ensure it appears on top of the banner */
+  max-width: 400px; /* Limit the form's width */
+  height: 700px;
+  margin: 0; /* Remove centering margin */
+  margin-left: 0; /* Explicitly align to the left margin */
 }
 
-.user-details {
-  margin-bottom: 20px;
-  text-align: left;
+/* User Image Container */
+.user-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px; /* Space between the image and user details */
 }
 
-.user-details p {
-  font-size: 1.1rem;
-  margin: 10px 0;
+.user-image {
+  width: 120px; /* Adjust the size of the image */
+  height: 120px;
+  border-radius: 50%; /* Makes the image round */
+  object-fit: cover; /* Ensures the image fits within the circle */
+  border: 3px solid #ccc; /* Optional: Add a border around the image */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Add a shadow for styling */
+}
+
+/* Partition Line */
+.partition-line {
+  width: 100%; /* Full width of the container */
+  height: 2px; /* Thickness of the line */
+  background-color: #ddd; /* Light gray color for the line */
+  margin: 20px 0; /* Spacing above and below the line */
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 30px;
+  margin-left: 20px; /* Align the buttons a little away from the form */
 }
 
 .action-buttons button {
-  margin: 5px;
-  padding: 10px 20px;
-  background-color: #007bff;
+  margin: 10px 0;
+  padding: 12px 20px;
+  width: 200px; /* Slender buttons */
+  background-color: #287581;
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 5px;
   cursor: pointer;
 }
 
 .action-buttons button:hover {
-  background-color: #0056b3;
+  background-color: #1f494d;
 }

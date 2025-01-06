@@ -9,7 +9,7 @@ const Feedback = () => {
   const [userID, setUserID] = useState(""); // User ID input
   const [bookingID, setBookingID] = useState(""); // Booking ID input
   const [comments, setComments] = useState(""); // Comments input
-  const [rating, setRating] = useState(3); // Star rating (default to 3)
+  const [rating, setRating] = useState(1); // Star rating (default to 3)
   const [createdDate, setCreatedDate] = useState(""); // Current Date (Created Date)
   const [submitted, setSubmitted] = useState(false);
 
