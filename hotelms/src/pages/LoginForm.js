@@ -26,16 +26,22 @@ const LoginForm = () => {
 
       // Handle the response if login is successful
       if (response.status === 200) {
+        const { userId } = response.data; // Extract userId from the response
         alert('Authentication successful! LOGGED IN!');
-        navigate('/home');  // Navigate to home page on successful login
+
+        // Save the userId to localStorage
+        localStorage.setItem('userId', userId);
+        console.log('User ID saved to localStorage:', userId);
+
+        // Navigate to the dashboard
+        navigate('/home');
       }
     } catch (err) {
       // Log the error to get more details
       console.error('Login failed:', err.response ? err.response.data : err);
       setErrorMessage(err.response ? err.response.data.message : 'Unknown error occurred. Please try again.');
     }
-};
-
+  };
 
   // Navigate to the sign-up page
   const registerClick = () => {
@@ -54,6 +60,7 @@ const LoginForm = () => {
           <input
             type="text"
             placeholder="Username"
+            value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
           />
@@ -64,6 +71,7 @@ const LoginForm = () => {
           <input
             type="password"
             placeholder="Password"
+            value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />

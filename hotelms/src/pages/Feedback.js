@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import "./Feedback.css";
 
 const Feedback = () => {
+  const location = useLocation();
+  const room = location.state;
+
   const [userID, setUserID] = useState(""); // User ID input
   const [bookingID, setBookingID] = useState(""); // Booking ID input
   const [comments, setComments] = useState(""); // Comments input
@@ -9,23 +13,21 @@ const Feedback = () => {
   const [createdDate, setCreatedDate] = useState(""); // Current Date (Created Date)
   const [submitted, setSubmitted] = useState(false);
 
+  // Retrieve userID from localStorage
   useEffect(() => {
-    // Get userID and bookingID from localStorage
-    const storedUserID = localStorage.getItem('userID');
-    const storedBookingID = localStorage.getItem('bookingID');
-
+    const storedUserID = localStorage.getItem("userId");
     if (storedUserID) {
-      setUserID(storedUserID); // Set userID from localStorage
-    }
-    if (storedBookingID) {
-      setBookingID(storedBookingID); // Set bookingID from localStorage
+      setUserID(storedUserID); // Set the retrieved userID
+    } else {
+      console.error("No userId found in localStorage.");
     }
 
     // Set the current date for the createdDate (in yyyy-mm-dd format)
-    const currentDate = new Date().toISOString().split('T')[0];
+    const currentDate = new Date().toISOString().split("T")[0];
     setCreatedDate(currentDate);
   }, []);
 
+  // Handle feedback submission
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -42,10 +44,10 @@ const Feedback = () => {
 
     // Make a request to save the feedback to the backend
     try {
-      const response = await fetch('http://localhost:3000/submit-feedback', {
-        method: 'POST',
+      const response = await fetch("http://localhost:3000/submit-feedback", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(feedbackData),
       });
@@ -53,10 +55,10 @@ const Feedback = () => {
       if (response.status === 200) {
         setSubmitted(true);
       } else {
-        alert('Error submitting feedback');
+        alert("Error submitting feedback");
       }
     } catch (err) {
-      console.error('Error during feedback submission:', err);
+      console.error("Error during feedback submission:", err);
     }
   };
 
@@ -67,14 +69,14 @@ const Feedback = () => {
           <form className="feedback-form" onSubmit={handleSubmit}>
             <h1>Submit Feedback</h1>
 
-            {/* User ID Field */}
+            {/* User ID Field (with placeholder) */}
             <label htmlFor="userID">User ID</label>
             <input
               type="text"
               id="userID"
-              value={userID}
-              onChange={(e) => setUserID(e.target.value)}
-              required
+              value={userID || ""} // Display the userID retrieved from localStorage
+              placeholder="User ID (auto-filled)"
+              readOnly // Make the field read-only since the userID is auto-filled
             />
 
             {/* Booking ID Field */}
@@ -82,8 +84,8 @@ const Feedback = () => {
             <input
               type="text"
               id="bookingID"
-              value={bookingID}
-              onChange={(e) => setBookingID(e.target.value)}
+              value={bookingID || ""} // Set the bookingID entered by the user
+              onChange={(e) => setBookingID(e.target.value)} // Allow the user to input booking ID
               required
             />
 

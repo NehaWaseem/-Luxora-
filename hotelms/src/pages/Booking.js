@@ -9,12 +9,21 @@ function Booking() {
   const [checkOutDate, setCheckOutDate] = useState('');
   const [bookingDetails, setBookingDetails] = useState(null);
   const [nextBookingId, setNextBookingId] = useState(null);
-  const [userId, setUserId] = useState(1); // Default user ID
+  const [userId, setUserId] = useState(null); // Initialize userId as null
   const [roomId, setRoomId] = useState(room.roomId); // Default room ID
   const [checkInDate] = useState(new Date().toISOString().split('T')[0]); // Current date
 
-  // fetching maximum booking ID from the database and set the nextBookingId
+  // Retrieve userId from localStorage and fetch maximum booking ID
   useEffect(() => {
+    // Retrieve userId from localStorage
+    const storedUserId = localStorage.getItem('userId');
+    if (storedUserId) {
+      setUserId(storedUserId); // Set the retrieved userId
+    } else {
+      console.error('No userId found in localStorage.');
+    }
+
+    // Fetch maximum booking ID from the database
     const fetchMaxBookingId = async () => {
       try {
         const response = await fetch('http://localhost:3000/max-booking-id'); // Replace with your API endpoint
@@ -34,7 +43,6 @@ function Booking() {
 
   // Handle booking confirmation
   const handleConfirmBooking = async () => {
-    
     const currentBookingDetails = {
       bookingId: nextBookingId,
       userId,
@@ -91,8 +99,8 @@ function Booking() {
             <input
               type="number"
               id="userId"
-              value={userId}
-              onChange={(e) => setUserId(e.target.value)}
+              value={userId || ''} // Display the userId retrieved from localStorage
+              readOnly
             />
           </div>
           <div className="form-group">

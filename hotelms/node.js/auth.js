@@ -14,7 +14,7 @@ app.use(cors());
 const config = {
   user: 'luxorauser',
   password: 'luxora6581',
-  server: '192.168.1.16',
+  server: '192.168.18.24',
   database: 'Luxora',
   options: {
     encrypt: false,
@@ -42,7 +42,7 @@ app.post('/login', async (req, res) => {
     if (password === user.upassword) {
       return res.status(200).json({ 
         message: 'Login successful', 
-        userId: user.userId // Return userId on successful login
+        userId: user.userId // Include userId in the response
       });
     } else {
       return res.status(401).json({ message: 'Invalid password' });
@@ -162,6 +162,33 @@ app.post('/submit-feedback', async (req, res) => {
   } catch (err) {
     console.error('Error submitting feedback:', err);
     res.status(500).json({ message: 'Error submitting feedback' });
+  }
+});
+
+// Endpoint to get user details by userId
+// Fetch user details by userId
+app.get('/user/:userId', async (req, res) => {
+  const { userId } = req.params;
+
+  try {
+    const pool = await connect(config);
+
+    const result = await pool.request()
+      .input('userId', pkg.Int, userId)
+      .query(`
+        SELECT userId, username, email, phonenum AS phone, uaddress AS address
+        FROM Users
+        WHERE userId = @userId
+      `);
+
+    if (result.recordset.length === 0) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    res.status(200).json(result.recordset[0]);
+  } catch (err) {
+    console.error('Error fetching user details:', err);
+    res.status(500).json({ message: 'Internal server error' });
   }
 });
 
