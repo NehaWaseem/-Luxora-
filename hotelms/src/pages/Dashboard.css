@@ -1,36 +1,83 @@
-/* User Dashboard */
-.user-dashboard {
+/* User Dashboard and Flashcards Layout */
+.dashboard-container {
   display: flex;
-  flex-direction: column; /* Arrange elements vertically */
-  align-items: flex-start; /* Align content to the left */
-  padding-top: 100px; /* Space above the dashboard for the banner */
-  padding-left: 20px; /* Optional: Add padding to avoid touching the screen edge */
-  background-image: url('./waves.png'); /* Set a background image */
-  background-size:cover; /* Make sure the background covers the entire container */
-  min-height: 100vh; /* Ensure the background covers the full screen height */
-  position: relative; /* To make sure it holds relative positioning */
-  z-index: 0; /* Ensure the background is behind other elements */
+  flex-direction: row; /* Align items side by side */
+  justify-content: space-between; /* Add spacing between components */
+  align-items: flex-start; /* Align items at the top */
+  padding: 20px;
+  gap: 20px; /* Space between the user dashboard and flashcards */
+  position: relative;
+  z-index: 2;
+  margin-top: 200px;
+  background-image: url('./shades.png');
 }
 
-/* Narrow Image Container */
-.image-banner {
-  width: 100%; /* Full width of the screen */
-  height: 250px; /* Adjust height as needed */
-  overflow: hidden; /* Ensures no overflow */
-  position: absolute; /* Ensures the banner stays at the top of the screen */
-  top: 0; /* Aligns the banner to the top of the screen */
-  left: 0; /* Aligns the banner to the left edge of the screen */
-  right: 0; /* Ensures full width with no spacing */
-  z-index: 1; /* Move the banner on top of the background image */
+
+/* Flashcard Container */
+/* User Dashboard and Flashcards Layout */
+.dashboard-container {
+  display: flex;
+  flex-direction: row; /* Align items side by side */
+  justify-content: space-between; /* Add spacing between components */
+  align-items: flex-start; /* Align items at the top */
+  padding: 20px;
+  gap: 20px; /* Space between the user dashboard and flashcards */
+  position: relative;
+  z-index: 2;
+  margin-top: 200px;
+  background-image: url('./shades.png');
 }
 
-.banner-image {
-  width: 100%; /* Make the image responsive */
-  height: 100%; /* Fill the container's height */
-  object-fit: cover; /* Ensures the image fills the container without distortion */
+/* Dashboard Flashcard Container */
+.dashboard-flashcard-container {
+  flex: 1; /* Allow the container to adjust dynamically */
+  background-image: url('./curtain.png');
+  border-radius: 10px; /* Rounded corners for a smoother design */
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+  height: fit-content; /* Adjust height dynamically based on content */
 }
 
-/* Dashboard Form */
+/* Dashboard Flashcard Grid */
+.dashboard-flashcard-grid {
+  display: flex;
+  flex-direction: column; /* Arrange flashcards in a column */
+  gap: 15px; /* Space between flashcards */
+}
+
+/* Dashboard Flashcard */
+.dashboard-flashcard {
+  background-color: #f4f3f3;
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+  padding: 20px; /* Inner padding */
+  font-size: 18px; /* Larger font size */
+  width: 100%; /* Make flashcards wider */
+  max-width: 700px; /* Limit maximum width */
+  height: 150px; /* Reduce height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center content vertically */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+}
+
+/* Hover Effect */
+.dashboard-flashcard:hover {
+  transform: scale(1.03); /* Slightly enlarge on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Increase shadow on hover */
+}
+
+.dashboard-flashcard p {
+  margin: 5px 0; /* Add some spacing between text lines */
+  line-height: 1.5; /* Adjust line height for readability */
+}
+
+.dashboard-flashcard strong {
+  color: #287581; /* Highlight labels with a brand color */
+}
+
+
+/* User Dashboard Form */
 .dashboard-form {
   background-image: url('./beige.png'); /* Background image for the form */
   border-radius: 10px; /* Rounded corners */
@@ -39,9 +86,7 @@
   position: relative; /* To position over the banner */
   z-index: 2; /* Ensure it appears on top of the banner */
   max-width: 400px; /* Limit the form's width */
-  height: 700px;
-  margin: 0; /* Remove centering margin */
-  margin-left: 0; /* Explicitly align to the left margin */
+  height: 875px;
 }
 
 /* User Image Container */
@@ -76,7 +121,6 @@
   flex-direction: column;
   align-items: flex-start;
   margin-top: 30px;
-  margin-left: 20px; /* Align the buttons a little away from the form */
 }
 
 .action-buttons button {
@@ -94,7 +138,26 @@
   background-color: #1f494d;
 }
 
-/* Modal styles */
+/* Narrow Image Container */
+.image-banner {
+  width: 100%; /* Full width of the screen */
+  height: 300px; /* Reduced height for the banner */
+  overflow: hidden; /* Ensures no overflow */
+  position: absolute; /* Ensures the banner stays at the top of the screen */
+  top: 0; /* Aligns the banner to the top of the screen */
+  left: 0; /* Aligns the banner to the left edge of the screen */
+  right: 0; /* Ensures full width with no spacing */
+  z-index: 1; /* Move the banner on top of the background image */
+}
+
+/* Banner Image */
+.banner-image {
+  width: 100%; /* Make the image responsive */
+  height: 100%; /* Fill the container's height */
+  object-fit: cover; /* Ensures the image fills the container without distortion */
+}
+
+/* Modal Overlay */
 .modal {
   position: fixed;
   top: 0;
@@ -108,6 +171,7 @@
   z-index: 1000; /* Ensure it's on top */
 }
 
+/* Modal Content */
 .modal-content {
   background: #fff;
   padding: 20px;

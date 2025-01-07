@@ -236,6 +236,61 @@ app.put('/update-user', async (req, res) => {
   }
 });
 
+// Endpoint to get bookings for a user by userId
+app.get('/user/:userId/bookings', async (req, res) => {
+  const { userId } = req.params;
+
+  try {
+    const pool = await connect(config);
+
+    // Get all bookings related to the user
+    const result = await pool.request()
+      .input('userId', pkg.Int, userId)
+      .query(`
+        SELECT b.bookingId, b.roomId, b.bookingStatus, b.check_in_date, b.check_out_date
+        FROM Booking b
+        WHERE b.userId = @userId
+      `);
+
+    if (result.recordset.length === 0) {
+      return res.status(404).json({ message: 'No bookings found for this user' });
+    }
+
+    // Send bookings data as JSON
+    res.status(200).json(result.recordset);
+  } catch (err) {
+    console.error('Error fetching bookings:', err);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+// Endpoint to get feedbacks for a user by userId
+app.get('/user/:userId/feedbacks', async (req, res) => {
+  const { userId } = req.params;
+
+  try {
+    const pool = await connect(config);
+
+    // Get all feedbacks related to the user
+    const result = await pool.request()
+      .input('userId', pkg.Int, userId)
+      .query(`
+        SELECT f.feedbackId, f.bookingId, f.comments, f.rating, f.createdDate
+        FROM Feedback f
+        WHERE f.userId = @userId
+      `);
+
+    if (result.recordset.length === 0) {
+      return res.status(404).json({ message: 'No feedbacks found for this user' });
+    }
+
+    // Send feedbacks data as JSON
+    res.status(200).json(result.recordset);
+  } catch (err) {
+    console.error('Error fetching feedbacks:', err);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
 
 // Start the server
 app.listen(port, () => {
