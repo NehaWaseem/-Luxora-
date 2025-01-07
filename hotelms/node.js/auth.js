@@ -292,6 +292,39 @@ app.get('/user/:userId/feedbacks', async (req, res) => {
   }
 });
 
+
+app.post('/create-payment', async (req, res) => {
+  const { bookingId, userId, amount, paymentDate, paymentMethod } = req.body;
+
+  // Validate required fields
+  if (!bookingId || !userId || !amount || !paymentMethod) {
+    return res.status(400).json({ message: 'Missing required fields' });
+  }
+
+  try {
+    const pool = await connect(config);
+
+    // Insert payment details into PaymentCheckout table
+    await pool.request()
+      .input('bookingId', pkg.Int, bookingId)
+      .input('userId', pkg.Int, userId)
+      .input('amount', pkg.Decimal(10, 2), amount)
+      .input('paymentDate', pkg.DateTime, new Date()) // Automatically set current date and time
+      .input('paymentMethod', pkg.NVarChar, paymentMethod)
+      .input('status', pkg.NVarChar, 'Completed') // Default status is 'Completed'
+      .query(`
+        INSERT INTO PaymentCheckout (bookingId, userId, amount, paymentDate, paymentMethod, status)
+        VALUES (@bookingId, @userId, @amount, @paymentDate, @paymentMethod, @status)
+      `);
+
+    res.status(201).json({ message: 'Payment processed successfully' });
+  } catch (error) {
+    console.error('Error processing payment:', error);
+    res.status(500).json({ message: 'Error processing payment' });
+  }
+});
+
+
 // Start the server
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);

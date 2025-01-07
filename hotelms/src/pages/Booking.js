@@ -9,27 +9,28 @@ function Booking() {
   const [checkOutDate, setCheckOutDate] = useState('');
   const [bookingDetails, setBookingDetails] = useState(null);
   const [nextBookingId, setNextBookingId] = useState(null);
-  const [userId, setUserId] = useState(null); // Initialize userId as null
-  const [roomId, setRoomId] = useState(room.roomId); // Default room ID
-  const [checkInDate] = useState(new Date().toISOString().split('T')[0]); // Current date
+  const [userId, setUserId] = useState(null);
+  const [roomId, setRoomId] = useState(room.roomId);
+  const [checkInDate] = useState(new Date().toISOString().split('T')[0]);
+  const [showPaymentModal, setShowPaymentModal] = useState(false);
 
-  // Retrieve userId from localStorage and fetch maximum booking ID
+  const defaultAmount = room.priceperday; // Amount for 1-day stay by default
+
+  // Fetch userId from localStorage and bookingId from the backend
   useEffect(() => {
-    // Retrieve userId from localStorage
     const storedUserId = localStorage.getItem('userId');
     if (storedUserId) {
-      setUserId(storedUserId); // Set the retrieved userId
+      setUserId(storedUserId);
     } else {
       console.error('No userId found in localStorage.');
     }
 
-    // Fetch maximum booking ID from the database
     const fetchMaxBookingId = async () => {
       try {
-        const response = await fetch('http://localhost:3000/max-booking-id'); // Replace with your API endpoint
+        const response = await fetch('http://localhost:3000/max-booking-id');
         const data = await response.json();
         if (response.ok) {
-          setNextBookingId(data.maxBookingId + 1); // Increment maxBookingId by 1
+          setNextBookingId(data.maxBookingId + 1);
         } else {
           console.error('Failed to fetch max booking ID:', data.message);
         }
@@ -75,15 +76,46 @@ function Booking() {
     }
   };
 
+  // Handle payment processing
+  const handlePayment = async () => {
+    const paymentDetails = {
+      bookingId: nextBookingId,
+      userId,
+      amount: defaultAmount,
+      paymentDate: new Date().toISOString(),
+      paymentMethod: 'Card',
+    };
+
+    try {
+      const response = await fetch('http://localhost:3000/create-payment', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(paymentDetails),
+      });
+
+      if (response.ok) {
+        alert('Payment Successful!');
+        setShowPaymentModal(false); // Close the modal
+      } else {
+        const errorData = await response.json();
+        console.error('Failed to process payment:', errorData.message);
+        alert('Failed to process payment. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error processing payment:', error.message);
+      alert('An error occurred while processing the payment.');
+    }
+  };
+
   return (
     <div className="booking-page">
-      {/* New Image Container */}
       <div className="image-container">
         <h1 className="reservation-heading">Reservation</h1>
       </div>
 
       <div className="booking-content">
-        {/* Booking Form (Left Side) */}
         <div className="booking-flashcard">
           <h2>Enter Booking Details</h2>
           <div className="form-group">
@@ -96,12 +128,7 @@ function Booking() {
             <label htmlFor="userId">
               <strong>User ID:</strong>
             </label>
-            <input
-              type="number"
-              id="userId"
-              value={userId || ''} // Display the userId retrieved from localStorage
-              readOnly
-            />
+            <input type="number" id="userId" value={userId || ''} readOnly />
           </div>
           <div className="form-group">
             <label htmlFor="roomId">
@@ -134,9 +161,16 @@ function Booking() {
           >
             Confirm Booking
           </button>
+          {bookingDetails && (
+            <button
+              className="payment-button"
+              onClick={() => setShowPaymentModal(true)}
+            >
+              Checkout/Payment
+            </button>
+          )}
         </div>
 
-        {/* Room Card Details (Right Side) */}
         <div className="room-details">
           <div className="room-card">
             <img
@@ -170,28 +204,36 @@ function Booking() {
         </div>
       </div>
 
-      {/* Display Confirmed Booking Details */}
-      {bookingDetails && (
-        <div className="confirmed-booking-details">
-          <h2>Confirmed Booking</h2>
-          <p>
-            <strong>Booking ID:</strong> {bookingDetails.bookingId}
-          </p>
-          <p>
-            <strong>User ID:</strong> {bookingDetails.userId}
-          </p>
-          <p>
-            <strong>Room ID:</strong> {bookingDetails.roomId}
-          </p>
-          <p>
-            <strong>Status:</strong> {bookingDetails.bookingStatus}
-          </p>
-          <p>
-            <strong>Check-in Date:</strong> {bookingDetails.check_in_date}
-          </p>
-          <p>
-            <strong>Check-out Date:</strong> {bookingDetails.check_out_date}
-          </p>
+      {/* Payment Modal */}
+      {showPaymentModal && (
+        <div className="modal">
+          <div className="modal-content">
+            <h2>Payment Details</h2>
+            <p>
+              <strong>User ID:</strong> {userId}
+            </p>
+            <p>
+              <strong>Booking ID:</strong> {nextBookingId}
+            </p>
+            <p>
+              <strong>Amount:</strong> ${defaultAmount.toFixed(2)}
+            </p>
+            <p>
+              <strong>Payment Date:</strong> {new Date().toISOString().split('T')[0]}
+            </p>
+            <p>
+              <strong>Payment Method:</strong> Card
+            </p>
+            <button className="pay-button" onClick={handlePayment}>
+              Pay
+            </button>
+            <button
+              className="cancel-payment-button"
+              onClick={() => setShowPaymentModal(false)}
+            >
+              Cancel
+            </button>
+          </div>
         </div>
       )}
     </div>
