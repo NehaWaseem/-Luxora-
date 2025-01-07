@@ -87,7 +87,7 @@
   position: relative; /* To position over the banner */
   z-index: 2; /* Ensure it appears on top of the banner */
   max-width: 400px; /* Limit the form's width */
-  height: 1032px;
+  height: 1336px;
 }
 
 /* User Image Container */
