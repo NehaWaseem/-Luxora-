@@ -31,7 +31,7 @@
 /* Dashboard Flashcard Container */
 .dashboard-flashcard-container {
   flex: 1; /* Allow the container to adjust dynamically */
-  background-image: url('./curtain.png');
+  background-image: url('./trees.png');
   border-radius: 10px; /* Rounded corners for a smoother design */
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
@@ -51,7 +51,7 @@
   border-radius: 10px; /* Rounded corners */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
   padding: 20px; /* Inner padding */
-  font-size: 18px; /* Larger font size */
+  font-size: 14px; /* Larger font size */
   width: 100%; /* Make flashcards wider */
   max-width: 700px; /* Limit maximum width */
   height: 150px; /* Reduce height */
@@ -74,6 +74,7 @@
 
 .dashboard-flashcard strong {
   color: #287581; /* Highlight labels with a brand color */
+  font-weight: bold;
 }
 
 
@@ -86,7 +87,7 @@
   position: relative; /* To position over the banner */
   z-index: 2; /* Ensure it appears on top of the banner */
   max-width: 400px; /* Limit the form's width */
-  height: 875px;
+  height: 1032px;
 }
 
 /* User Image Container */
