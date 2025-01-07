@@ -193,7 +193,48 @@ app.get('/user/:userId', async (req, res) => {
 });
 
 
+// Endpoint to update user details
+app.put('/update-user', async (req, res) => {
+  const { userId, username, email, phone, address } = req.body;
 
+  // Validate required fields
+  if (!userId || !username || !email || !phone || !address) {
+    return res.status(400).json({
+      message: 'All fields (userId, username, email, phone, address) are required.',
+    });
+  }
+
+  try {
+    const pool = await connect(config);
+
+    console.log('Update User Request Body:', req.body); // Debugging log
+
+    // Update user details in the database
+    const result = await pool.request()
+      .input('userId', pkg.Int, userId)
+      .input('username', pkg.NVarChar, username)
+      .input('email', pkg.NVarChar, email)
+      .input('phone', pkg.NVarChar, phone)
+      .input('address', pkg.NVarChar, address)
+      .query(`
+        UPDATE Users
+        SET username = @username,
+            email = @email,
+            phonenum = @phone,
+            uaddress = @address
+        WHERE userId = @userId
+      `);
+
+    if (result.rowsAffected[0] === 0) {
+      return res.status(404).json({ message: 'User not found or no changes made.' });
+    }
+
+    res.status(200).json({ message: 'User details updated successfully' });
+  } catch (err) {
+    console.error('Error updating user details:', err);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
 
 
 // Start the server

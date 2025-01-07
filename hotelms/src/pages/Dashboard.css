@@ -93,3 +93,64 @@
 .action-buttons button:hover {
   background-color: #1f494d;
 }
+
+/* Modal styles */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Dim background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure it's on top */
+}
+
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 400px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content h3 {
+  margin-bottom: 20px;
+}
+
+.modal-content form label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.modal-content form input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.modal-buttons button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal-buttons button:nth-child(1) {
+  background: #4caf50;
+  color: white;
+}
+
+.modal-buttons button:nth-child(2) {
+  background: #f44336;
+  color: white;
+}
